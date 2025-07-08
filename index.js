@@ -425,4 +425,12 @@ function createCardsFromResponse(response){
 }
 
 
-createCardsFromResponse(response)
+//createCardsFromResponse(response)
+
+const elemento = document.getElementById("prueba");
+if(elemento){
+    console.log("hemos llegado")
+    elemento.textContent = "hola mundo";
+}else{
+    console.log("no hemos llegado")
+}
