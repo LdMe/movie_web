@@ -425,7 +425,7 @@ function createCardsFromResponse(response){
 }
 
 
-//createCardsFromResponse(response)
+createCardsFromResponse(response)
 
 const elemento = document.getElementById("prueba");
 if(elemento){
