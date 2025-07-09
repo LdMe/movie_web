@@ -7,8 +7,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Web de peliculas</h1>
-    <section id="search-bar"></section>
+    <h1>Films</h1>
+    <section id="search-bar">
+        <form action="">
+            <input id="miInput" name="search">
+            <label for="minScore">Min Score</label>
+            <select name="minScore" id="minScore">
+                <option value="0">All</option>
+                <option value="5">5</option>
+                <option value="7.5">7.5</option>
+            </select>
+            <button>Search</button>
+        </form>
+    </section>
     <section id="film-list"></section>
    <script src="index.js"></script> 
 </body>
