@@ -434,8 +434,14 @@ function createFilmCard(film){
       article.remove();
     })
 
-    textDiv.classList.add("card--text");
+    textDiv.classList.add("card--text","hidden");
     article.append(image,textDiv);
+    article.addEventListener("mouseover",()=>{
+      textDiv.classList.remove("hidden")
+    })
+    article.addEventListener("mouseout",()=>{
+      textDiv.classList.add("hidden")
+    })
     textDiv.append(title,description,moreButton,release_date,score,deleteButton)
     return article;
 }
