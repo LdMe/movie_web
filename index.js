@@ -391,11 +391,19 @@ function createFilmCard(film){
     const image = document.createElement("img");
     const score = document.createElement("p");
     const description = document.createElement("p");
+    const moreButton = document.createElement("button");
     const deleteButton = document.createElement("button");
+
+    const textDiv = document.createElement("div");
 
     article.setAttribute("id","film-"+film.id)
     article.classList.add("card","film-card");
 
+    if(film.poster_path){
+      image.src="https://image.tmdb.org/t/p/original/"+film.poster_path
+    }else{
+      image.src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+    }
     title.classList.add("title")
     title.textContent = film.title;
     
@@ -405,15 +413,30 @@ function createFilmCard(film){
     score.textContent = film.vote_average;
 
     description.classList.add("description")
-    description.textContent = film.overview;
+    description.textContent = film.overview.substring(0,50)+"...";
 
+    moreButton.textContent="Show more";
+    moreButton.addEventListener("click",()=>{
+      if(description.classList.contains("full")){
+        description.textContent = film.overview.substring(0,50)+"...";
+        moreButton.textContent="Show more";
+        description.classList.remove("full");
+      }else{
+        description.textContent = film.overview;
+        moreButton.textContent="Show less";
+        description.classList.add("full");
+      }
+      
+    })
     deleteButton.textContent="Delete";
 
     deleteButton.addEventListener("click",()=>{
       article.remove();
     })
 
-    article.append(title,description,release_date,score,deleteButton);
+    textDiv.classList.add("card--text");
+    article.append(image,textDiv);
+    textDiv.append(title,description,moreButton,release_date,score,deleteButton)
     return article;
 }
 

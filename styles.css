@@ -1,3 +1,37 @@
 .hidden  {
     display: none;
 }
+#film-list {
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:1rem;
+}
+.card {
+    box-shadow: 2px 2px 2px 1px rgb(130, 130, 130);
+    border-radius: 5px;
+}
+.card img {
+    width:100%;
+    aspect-ratio: 9/14;
+    border-radius:5px 5px 0 0;
+}
+.card--text{
+
+    padding:1rem;
+}
+
+@media (min-width:768px){
+    #film-list {
+        grid-template-columns: 1fr 1fr;
+    }
+    .description {
+    height: 100px;
+    overflow-y:auto;
+}
+}
+
+@media (min-width:1024px){
+    #film-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
