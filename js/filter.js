@@ -1,3 +1,7 @@
+import fetchData from "./api.js";
+import { createCardsFromResponse,createLoadingMessage } from "./cards.js";
+import { datos as defaultDatos } from "./datos.js";
+
 function filterMovies(searchTerm, minScore) {
     const films = document.getElementsByClassName("film-card");
     for (let i = 0; i < films.length; i++) {
@@ -15,6 +19,15 @@ function filterMovies(searchTerm, minScore) {
     }
 }
 
+async function fetchMovies(query,page){
+    createLoadingMessage();
+    const datos = await fetchData(query,page);
+    if(datos.error){
+        createCardsFromResponse(defaultDatos)
+    }else{
+        createCardsFromResponse(datos);
+    }
+} 
 
 export function startFilter(query) {
     const form = document.querySelector(query);
@@ -22,11 +35,12 @@ export function startFilter(query) {
         event.preventDefault();
         const formulario = event.target;
         const input = formulario.search;
-        const select = formulario.minScore;
+        const pageInput = formulario.page;
 
         const searchTerm = input.value;
-        const minScore = select.value;
-        console.log(searchTerm, minScore)
-        filterMovies(searchTerm, minScore)
+        const page = pageInput.value;
+        console.log(searchTerm, page)
+        fetchMovies(searchTerm,page);
+        //filterMovies(searchTerm, minScore)
     })
 }
